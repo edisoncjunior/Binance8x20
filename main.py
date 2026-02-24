@@ -11,10 +11,10 @@ def main():
         try:
             df = obter_klines()
             df = calcular_medias(df)
+            preco_mm20 = df["mm20"].iloc[-1]
+            quantidade = calcular_quantidade(preco_mm20)
 
             if cruzamento_baixa(df):
-                preco_mm20 = df["mm20"].iloc[-1]
-                quantidade = calcular_quantidade(preco_mm20)
 
                 print(f"Sinal detectado. Enviando SHORT LIMIT em {preco_mm20}")
                 enviar_ordem_limit_short(preco_mm20, quantidade)
@@ -26,4 +26,12 @@ def main():
             time.sleep(10)
 
 if __name__ == "__main__":
+print("Testando conexão com Binance...")
+
+try:
+    info = client.futures_account()
+    print("Conexão OK")
+except Exception as e:
+    print("Erro detalhado:", e)
+
     main()
