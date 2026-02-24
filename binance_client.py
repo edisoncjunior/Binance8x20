@@ -5,7 +5,7 @@ client = Client(API_KEY, API_SECRET)
 
 def configurar_conta():
     # Ativar Hedge Mode
-    client.futures_change_position_mode(dualSidePosition=True)
+#    client.futures_change_position_mode(dualSidePosition=True)
 
     # Definir alavancagem
     client.futures_change_leverage(
